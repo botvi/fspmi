@@ -105,8 +105,13 @@
             
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('pemasukan.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
-                    <div class="table-responsive">
+                    <div class="d-flex gap-2 mb-3">
+                        <a href="{{ route('pemasukan.create') }}" class="btn btn-primary">Tambah Data</a>
+                        <button type="button" class="btn btn-success" onclick="printTable()">
+                            <i class="bx bx-printer me-1"></i>Print Tabel
+                        </button>
+                    </div>
+                    <div class="table-responsive" id="printableTable">
                         <table id="example2" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
@@ -190,5 +195,120 @@
                 });
             });
         });
+
+        // Function untuk print tabel
+        function printTable() {
+            // Buat window baru untuk print
+            let printWindow = window.open('', '_blank');
+            
+            // Ambil tabel asli
+            let originalTable = document.getElementById('example2');
+            
+            // Buat tabel baru untuk print (tanpa kolom Aksi)
+            let printTable = originalTable.cloneNode(true);
+            
+            // Hapus kolom Aksi dari header
+            let headerRow = printTable.querySelector('thead tr');
+            let headerCells = headerRow.querySelectorAll('th');
+            headerCells[5].remove(); // Hapus kolom Aksi (index 5)
+            
+            // Hapus kolom Aksi dari setiap baris data
+            let dataRows = printTable.querySelectorAll('tbody tr');
+            dataRows.forEach(row => {
+                let cells = row.querySelectorAll('td');
+                cells[5].remove(); // Hapus kolom Aksi (index 5)
+            });
+            
+            // Hapus kolom Aksi dari footer
+            let footerRow = printTable.querySelector('tfoot tr');
+            let footerCells = footerRow.querySelectorAll('th');
+            footerCells[5].remove(); // Hapus kolom Aksi (index 5)
+            
+            // Buat HTML untuk print
+            let printContent = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Data Pemasukan - Print</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            margin: 20px;
+                            font-size: 12px;
+                        }
+                        .print-header {
+                            text-align: center;
+                            margin-bottom: 20px;
+                            border-bottom: 2px solid #333;
+                            padding-bottom: 10px;
+                        }
+                        .print-header h2 {
+                            margin: 0;
+                            color: #333;
+                        }
+                        .print-header p {
+                            margin: 5px 0;
+                            color: #666;
+                        }
+                        table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            margin-top: 20px;
+                        }
+                        th, td {
+                            border: 1px solid #ddd;
+                            padding: 8px;
+                            text-align: left;
+                            vertical-align: top;
+                        }
+                        th {
+                            background-color: #f2f2f2;
+                            font-weight: bold;
+                        }
+                        .print-footer {
+                            margin-top: 30px;
+                            text-align: right;
+                            font-size: 10px;
+                            color: #666;
+                        }
+                        img {
+                            max-width: 80px;
+                            max-height: 80px;
+                            object-fit: cover;
+                        }
+                        @media print {
+                            body { margin: 0; }
+                            .no-print { display: none; }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="print-header">
+                        <h2>DATA PEMASUKAN</h2>
+                        <p>Tanggal Print: ${new Date().toLocaleDateString('id-ID')}</p>
+                        <p>Waktu Print: ${new Date().toLocaleTimeString('id-ID')}</p>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        ${printTable.outerHTML}
+                    </div>
+                    
+                    <div class="print-footer">
+                        <p>Dicetak pada: ${new Date().toLocaleString('id-ID')}</p>
+                    </div>
+                </body>
+                </html>
+            `;
+            
+            // Tulis konten ke window baru
+            printWindow.document.write(printContent);
+            printWindow.document.close();
+            
+            // Tunggu sebentar lalu print
+            setTimeout(function() {
+                printWindow.print();
+                printWindow.close();
+            }, 500);
+        }
     </script>
 @endsection
