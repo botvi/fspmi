@@ -10,7 +10,7 @@ body {
 	font-size: 14px;
 	color: #4c5258;
 	letter-spacing: .5px;
-	background: #f7f7ff;
+	background: #f2f2f2 url('https://assets.siakadcloud.com/assets/v1/img/pattern/pat_04.png') repeat;
 	overflow-x: hidden;
 	font-family: Roboto, sans-serif
 }
@@ -1776,11 +1776,8 @@ a {
 }
 
 .bg-login {
-	background-image: url(../images/login-images/bg-login-img.jpg);
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-attachment: fixed
+	background: #f2f2f2 url('https://assets.siakadcloud.com/assets/v1/img/pattern/pat_04.png') repeat;
+
 }
 
 .bg-forgot {

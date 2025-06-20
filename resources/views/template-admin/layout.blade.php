@@ -26,7 +26,7 @@
 	<link rel="stylesheet" href="{{ asset('admin') }}/assets/css/semi-dark.css"/>
 	<link rel="stylesheet" href="{{ asset('admin') }}/assets/css/header-colors.css"/>
     @yield('style')
-	<title>Dashboard</title>
+	<title>Dashboard - FSPMI</title>
 </head>
 
 <body>
@@ -34,12 +34,10 @@
     <div class="wrapper">
         <!--sidebar wrapper -->
         <div class="sidebar-wrapper" data-simplebar="true">
-            <div class="sidebar-header">
+			<div class="sidebar-header">
 				<div>
-					{{-- <img src="{{ asset('env') }}/logotangkas.png" class="logo-icon" alt="logo icon"> --}}
-				</div>
-				<div>
-					<h4 class="logo-text">Dashboard</h4>
+					<img src="{{ asset('env') }}/logo_text.png" class="logo-text" alt="logo icon" style="width: 80px; margin-left: 10px;">
+					<img src="{{ asset('env') }}/logo.png" class="logo-icon" alt="logo icon" style="width: 40px; display: none;">
 				</div>
 				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
 				</div>
@@ -340,11 +338,15 @@
 					</div>
 					<div class="user-box dropdown">
 						<a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<img src="https://cdn-icons-png.flaticon.com/512/9187/9187604.png" class="user-img" alt="user avatar">
+							@if(Auth::user()->profil)
+								<img src="{{ asset('profil/'.Auth::user()->profil) }}" class="user-img" alt="user avatar">
+							@else
+								<img src="https://cdn-icons-png.flaticon.com/512/9187/9187604.png" class="user-img" alt="user avatar">
+							@endif
 						
 							<div class="user-info ps-3">
-									<p class="user-name mb-0">Guest</p>
-									<p class="designation mb-0">Not Logged In</p>
+									<p class="user-name mb-0">{{ Auth::user()->nama }}</p>
+									<p class="designation mb-0"><span class="badge bg-primary">{{ Auth::user()->role }}</span></p>
 							</div>
 						</a>
 						
@@ -378,14 +380,14 @@
             $year = date('Y');
             ?>
 
-            <p class="mb-0">Copyright © <?php echo $year; ?>. All right reserved.</p>
+            <p class="mb-0">Copyright © <?php echo $year; ?> FSPMI. Sungai Langsat.</p>
         </footer>
     </div>
     <!--end wrapper-->
     <!--start switcher-->
 
     <!--end switcher-->
-    {{-- @include('sweetalert::alert') --}}
+    @include('sweetalert::alert')
 
     @yield('script')
 
