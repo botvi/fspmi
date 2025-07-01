@@ -32,6 +32,15 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="col-md-12">
+                                    <label for="tanggal_masuk" class="form-label">Tanggal Masuk</label>
+                                    <input type="date" class="form-control" id="tanggal_masuk" name="tanggal_masuk" required value="{{ old('tanggal_masuk', $pemasukan->tanggal_masuk) }}">
+                                    <small class="text-danger">
+                                        @foreach ($errors->get('tanggal_masuk') as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </small>
+                                </div>
+                                <div class="col-md-12">
                                     <label for="keterangan" class="form-label">Keterangan</label>
                                     <textarea rows="3" type="text" class="form-control" id="keterangan" name="keterangan"
                                         required>{{ old('keterangan', $pemasukan->keterangan) }}</textarea>
@@ -62,6 +71,7 @@
                                     </small>
                                 </div>
                                 <div class="col-md-12">
+                                    <label for="master_satuan_id" class="form-label text-danger">*Bisa Di Kosongkan!</label>
                                     <label for="master_satuan_id" class="form-label">Satuan</label>
                                     <select name="master_satuan_id" id="master_satuan_id" class="form-control">
                                         <option value="">Pilih Satuan</option>

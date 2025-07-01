@@ -62,13 +62,13 @@
                         <table class="table table-bordered">
                             <tr>
                                 <th>Total Pengeluaran Keseluruhan</th>
-                                <td><span class="badge bg-danger">Rp.
+                                <td><span class="badge bg-danger" style="font-size: 16px; font-weight: bold;">Rp.
                                         {{ number_format($pengeluarans->sum('total_harga'), 0, ',', '.') }}</span>
                                 </td>
                             </tr>
                             <tr>
                                 <th>Jumlah Data</th>
-                                <td><span class="badge bg-success">{{ $pengeluarans->count() }} data</span></td>
+                                <td><span class="badge bg-success" style="font-size: 16px; font-weight: bold;">{{ $pengeluarans->count() }} data</span></td>
                             </tr>
                             @if(request('bulan') || request('tahun'))
                             <tr>
@@ -93,7 +93,8 @@
                         <table id="example2" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Tanggal</th>
+                                    <th>No</th>
+                                    <th>Tanggal Keluar</th>
                                     <th>Keterangan</th>
                                     <th>Harga Satuan</th>
                                     <th>Jumlah</th>
@@ -107,10 +108,11 @@
                                 @if($pengeluarans->count() > 0)
                                     @foreach ($pengeluarans as $index => $p)
                                         <tr>
-                                            <td>{{ $p->created_at->format('d/m/Y') }}</td>
+                                            <td>{{ $index + 1 }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($p->tanggal_keluar)->format('d/m/Y') }}</td>
                                             <td>{{ $p->keterangan }}</td>
                                             <td>Rp. {{ number_format($p->harga_satuan, 0, ',', '.') }}</td>
-                                            <td>{{ $p->jumlah }} ({{ $p->master_satuan->nama_satuan }})</td>
+                                            <td>{{ $p->jumlah }} ({{ $p->master_satuan->nama_satuan ?? 'Tidak Ada Satuan' }})</td>
                                             <td>Rp. {{ number_format($p->harga_satuan * $p->jumlah, 0, ',', '.') }}</td>
                                             <td>
                                                 @if($p->gambar)
@@ -145,7 +147,8 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>Tanggal</th>
+                                    <th>No</th>
+                                    <th>Tanggal Keluar</th>
                                     <th>Keterangan</th>
                                     <th>Harga Satuan</th>
                                     <th>Jumlah</th>

@@ -32,6 +32,7 @@
                                             alt="Admin" class="rounded p-1" width="110">
                                         <div class="mt-3">
                                             <h4>{{ $data->nama }}</h4>
+                                            <h6>{{ $data->jabatan }}</h6>
                                         </div>
                                     </div>
 
@@ -78,7 +79,17 @@
                                             </div>
                                         </div>
 
+                                        <!-- Jabatan -->
 
+                                        <div class="row mb-3">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">Jabatan</h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                <input type="text" name="jabatan" class="form-control"
+                                                    value="{{ $data->jabatan }}" />
+                                            </div>
+                                        </div>
                                       
 
                                         <!-- Nama Penanggung Jawab -->

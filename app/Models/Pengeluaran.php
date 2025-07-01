@@ -9,7 +9,7 @@ class Pengeluaran extends Model
 {
     use HasFactory;
     protected $table = 'pengeluarans';
-    protected $fillable = ['user_id', 'keterangan', 'harga_satuan', 'jumlah', 'master_satuan_id', 'total_harga', 'gambar'];
+    protected $fillable = ['user_id', 'tanggal_keluar', 'keterangan', 'harga_satuan', 'jumlah', 'master_satuan_id', 'total_harga', 'gambar'];
 
     public function user()
     {

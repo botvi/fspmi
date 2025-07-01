@@ -9,7 +9,7 @@ class Pemasukan extends Model
 {
     use HasFactory; 
     protected $table = 'pemasukans';
-    protected $fillable = ['user_id', 'keterangan', 'harga_satuan', 'jumlah', 'master_satuan_id', 'total_harga', 'gambar'];
+    protected $fillable = ['user_id', 'tanggal_masuk', 'keterangan', 'harga_satuan', 'jumlah', 'master_satuan_id', 'total_harga', 'gambar'];
 
     public function user()
     {

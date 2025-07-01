@@ -41,6 +41,15 @@
                                     </small>
                                 </div>
                                 <div class="col-md-6">
+                                    <label for="jabatan" class="form-label">Jabatan</label>
+                                    <input type="text" class="form-control uppercase" id="jabatan" name="jabatan" required>
+                                    <small class="text-danger">
+                                        @foreach ($errors->get('jabatan') as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </small>
+                                </div>
+                                <div class="col-md-6">
                                     <label for="nama" class="form-label">Nama Anggota</label>
                                     <input type="text" class="form-control uppercase" id="nama" name="nama" required>
                                     <small class="text-danger">

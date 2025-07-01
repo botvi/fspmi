@@ -49,10 +49,11 @@ class PengeluaranController extends Controller
     {
         try {
             $request->validate([
+                'tanggal_keluar' => 'required|date',
                 'keterangan' => 'required|string|max:255',
                 'harga_satuan' => 'required|numeric|min:0',
                 'jumlah' => 'required|integer|min:1',
-                'master_satuan_id' => 'required|exists:master_satuans,id',
+                'master_satuan_id' => 'nullable|exists:master_satuans,id',
                 'total_harga' => 'required|numeric|min:0',
                 'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
@@ -64,6 +65,7 @@ class PengeluaranController extends Controller
         try {
             $pengeluaran = Pengeluaran::create([
                 'user_id' => Auth::user()->id,
+                'tanggal_keluar' => $request->tanggal_keluar,
                 'keterangan' => $request->keterangan,
                 'harga_satuan' => $request->harga_satuan,
                 'jumlah' => $request->jumlah,
@@ -102,10 +104,11 @@ class PengeluaranController extends Controller
     {
         try {
             $request->validate([
+                'tanggal_keluar' => 'required|date',
                 'keterangan' => 'required|string|max:255',
                 'harga_satuan' => 'required|numeric|min:0',
                 'jumlah' => 'required|integer|min:1',
-                'master_satuan_id' => 'required|exists:master_satuans,id',
+                'master_satuan_id' => 'nullable|exists:master_satuans,id',
                 'total_harga' => 'required|numeric|min:0',
                 'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
@@ -119,6 +122,7 @@ class PengeluaranController extends Controller
             
             // Update data dasar
             $pengeluaran->update([
+                'tanggal_keluar' => $request->tanggal_keluar,
                 'keterangan' => $request->keterangan,
                 'harga_satuan' => $request->harga_satuan,
                 'jumlah' => $request->jumlah,

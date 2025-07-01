@@ -31,6 +31,15 @@
                             <form action="{{ route('pengeluaran.store') }}" method="POST" class="row g-3" enctype="multipart/form-data">
                                 @csrf
                                 <div class="col-md-12">
+                                    <label for="tanggal_keluar" class="form-label">Tanggal Keluar</label>
+                                    <input type="date" class="form-control" id="tanggal_keluar" name="tanggal_keluar" required>
+                                    <small class="text-danger">
+                                        @foreach ($errors->get('tanggal_keluar') as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </small>
+                                </div>
+                                <div class="col-md-12">
                                     <label for="keterangan" class="form-label">Keterangan</label>
                                     <textarea rows="3" type="text" class="form-control" id="keterangan" name="keterangan"
                                         required></textarea>
@@ -59,6 +68,7 @@
                                     </small>
                                 </div>
                                 <div class="col-md-12">
+                                    <label for="master_satuan_id" class="form-label text-danger">*Bisa Di Kosongkan!</label>
                                     <label for="master_satuan_id" class="form-label">Satuan</label>
                                     <select name="master_satuan_id" id="master_satuan_id" class="form-control">
                                         <option value="">Pilih Satuan</option>

@@ -15,6 +15,7 @@ use App\Http\Controllers\admin\{
     MasterSatuanController,
     PembagianSaldoController,
     ManemegenAnggotaController,
+    PinjamanController,
 };
 use App\Http\Controllers\member\{
     PembagianSaldoMemberController,
@@ -52,6 +53,11 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::resource('pengeluaran', PengeluaranController::class);
     Route::resource('master_satuan', MasterSatuanController::class);
     Route::get('/pembagian-saldo', [PembagianSaldoController::class, 'index'])->name('pembagian_saldo');
+    Route::post('/pembagian-saldo/potong-pinjaman', [PembagianSaldoController::class, 'potongPinjaman'])->name('pembagian_saldo.potong_pinjaman');
+    Route::post('/pembagian-saldo/potong-otomatis', [PembagianSaldoController::class, 'potongOtomatis'])->name('pembagian_saldo.potong_otomatis');
+    Route::resource('pinjaman', PinjamanController::class);
+    Route::get('pinjaman/detail/{memberId}', [PinjamanController::class, 'detail'])->name('pinjaman.detail');
+    Route::post('pinjaman/angsuran/{memberId}', [PinjamanController::class, 'angsuranStore'])->name('pinjaman.angsuran.store');
 });
 
 Route::group(['middleware' => ['role:member']], function () {

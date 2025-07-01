@@ -17,6 +17,7 @@ class SuperAdminSeeder extends Seeder
     {
         User::create([
             'username' => 'admin',
+            'jabatan' => 'Admin',
             'nama' => 'Admin',
             'no_wa' => '081234567890',
             'role' => 'admin',

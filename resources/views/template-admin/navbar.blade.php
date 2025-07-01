@@ -40,6 +40,12 @@
             <div class="menu-title">PENGELUARAN</div>
         </a>
     </li>
+    <li>
+        <a href="/pinjaman">
+            <div class="parent-icon"><i class='bx bx-dollar-circle'></i></div>
+            <div class="menu-title">PINJAMAN</div>
+        </a>
+    </li>
     <li class="menu-label">LAPORAN</li>
     <li>
         <a href="{{ route('pembagian_saldo') }}">

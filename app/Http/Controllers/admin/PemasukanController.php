@@ -48,10 +48,11 @@ class PemasukanController extends Controller
     {
         try {
             $request->validate([
+                'tanggal_masuk' => 'required|date',
                 'keterangan' => 'required|string|max:255',
                 'harga_satuan' => 'required|numeric|min:0',
                 'jumlah' => 'required|integer|min:1', 
-                'master_satuan_id' => 'required|exists:master_satuans,id',
+                'master_satuan_id' => 'nullable|exists:master_satuans,id',
                 'total_harga' => 'required|numeric|min:0',
                 'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
@@ -63,6 +64,7 @@ class PemasukanController extends Controller
         try {
             $pemasukan = Pemasukan::create([
                 'user_id' => Auth::user()->id,
+                'tanggal_masuk' => $request->tanggal_masuk,
                 'keterangan' => $request->keterangan,
                 'harga_satuan' => $request->harga_satuan,
                 'jumlah' => $request->jumlah,
@@ -102,10 +104,11 @@ class PemasukanController extends Controller
     {
         try {
             $request->validate([
+                'tanggal_masuk' => 'required|date',
                 'keterangan' => 'required|string|max:255',
                 'harga_satuan' => 'required|numeric|min:0',
                 'jumlah' => 'required|integer|min:1',
-                'master_satuan_id' => 'required|exists:master_satuans,id',
+                'master_satuan_id' => 'nullable|exists:master_satuans,id',
                 'total_harga' => 'required|numeric|min:0',
                 'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
@@ -119,6 +122,7 @@ class PemasukanController extends Controller
             
             // Update data dasar
             $pemasukan->update([
+                'tanggal_masuk' => $request->tanggal_masuk,
                 'keterangan' => $request->keterangan,
                 'harga_satuan' => $request->harga_satuan,
                 'jumlah' => $request->jumlah,

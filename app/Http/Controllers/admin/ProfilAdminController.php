@@ -23,6 +23,7 @@ class ProfilAdminController extends Controller
 
         $validator = Validator::make($request->all(), [
             'username' => 'required|unique:users,username,' . $admin->id,
+            'jabatan' => 'required',
             'nama' => 'required', 
             'no_wa' => 'required',
             'profil' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',

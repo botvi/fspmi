@@ -69,7 +69,7 @@
                         <table class="table table-bordered">
                             <tr>
                                 <th>Total Pemasukan Keseluruhan</th>
-                                <td><span class="badge bg-success">Rp.
+                                <td><span class="badge bg-success" style="font-size: 16px; font-weight: bold;">Rp.
                                         {{ number_format($pemasukans->sum('total_harga'), 0, ',', '.') }}</span>
                                 </td>
                             </tr>
@@ -115,6 +115,8 @@
                         <table id="example2" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
+                                    <th>No</th>
+                                    <th>Tanggal Masuk</th>
                                     <th>Keterangan</th>
                                     <th>Harga Satuan</th>
                                     <th>Jumlah</th>
@@ -127,9 +129,11 @@
                             <tbody>
                                 @foreach ($pemasukans as $index => $p)
                                     <tr>
+                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($p->tanggal_masuk)->format('d/m/Y') }}</td>
                                         <td>{{ $p->keterangan }}</td>
                                         <td>Rp. {{ number_format($p->harga_satuan, 0, ',', '.') }}</td>
-                                        <td>{{ $p->jumlah }} ({{ $p->master_satuan->nama_satuan }})</td>
+                                        <td>{{ $p->jumlah }} ({{ $p->master_satuan->nama_satuan ?? 'Tidak Ada Satuan' }})</td>
                                         <td>Rp. {{ number_format($p->harga_satuan * $p->jumlah, 0, ',', '.') }}</td>
                                         <td>
                                             @if($p->gambar)
@@ -153,6 +157,8 @@
                             </tbody>
                             <tfoot>
                                 <tr>
+                                    <th>No</th>
+                                    <th>Tanggal Masuk</th>
                                     <th>Keterangan</th>
                                     <th>Harga Satuan</th>
                                     <th>Jumlah</th>

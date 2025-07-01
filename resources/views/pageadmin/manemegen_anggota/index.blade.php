@@ -28,6 +28,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nomor Anggota</th>
+                                    <th>Jabatan</th>
                                     <th>Nama Anggota</th>
                                     <th>No HP Anggota</th>
                                     <th>Alamat Anggota</th>
@@ -41,6 +42,7 @@
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $p->no_anggota }}</td>
+                                        <td>{{ $p->jabatan }}</td>
                                         <td>{{ $p->nama }}</td>
                                         <td>{{ $p->no_wa }}</td>
                                         <td>{{ $p->alamat }}</td>
@@ -68,6 +70,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nomor Anggota</th>
+                                    <th>Jabatan</th>
                                     <th>Nama Anggota</th>
                                     <th>No HP Anggota</th>
                                     <th>Alamat Anggota</th>

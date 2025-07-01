@@ -19,6 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'no_anggota',
+        'jabatan',
         'nama',
         'username',
         'no_wa',
@@ -47,4 +48,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // Relasi dengan pinjaman
+    public function pinjaman()
+    {
+        return $this->hasMany(Pinjaman::class, 'member_id');
+    }
+
+    // Relasi dengan angsuran
+    public function angsurans()
+    {
+        return $this->hasMany(Angsuran::class, 'member_id');
+    }
 }

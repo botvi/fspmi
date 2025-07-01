@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('pemasukans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
+            $table->date('tanggal_masuk');
             $table->longText('keterangan');
             $table->string('harga_satuan');
             $table->integer('jumlah');
-            $table->foreignId('master_satuan_id');
+            $table->foreignId('master_satuan_id')->nullable();
             $table->string('total_harga');
             $table->string('gambar')->nullable();
             $table->timestamps();
